@@ -1,0 +1,68 @@
+<svg id="screen">
+  <svg id="clockface">
+  </svg>
+  <svg id="button-ring" height="95%" width="95%" x="5%" y="5%" >
+    <defs>
+      <symbol id="outer-button" >
+          <use id="button-inner" href="#square-button" fill="fb-red" width="25%" height="25%" class="uberbutton" />     
+      </symbol>
+    </defs>
+    <rect id="centerbox" x="25%" y="25%" height="50%" width="50%" class="box" pointer-events="visible">
+      <text id="app-title" class="title" x="50%" y="50%">uberclock</text>
+    </rect>
+    <use href="#outer-button" x="0" y="0" >
+      <set href="#button-inner" attributeName="id" to="square_1_1" />
+      <!--<set href="#button-inner/text" attributeName="text-buffer" to="Go!" />-->
+    </use>
+    <use href="#outer-button" x="25%" y="0" >
+      <set href="button-inner" attributeName="id" to="square_1_2" />
+  <!--    <set href="#text" attributeName="text-buffer" to="Click Me!" />-->
+    </use>
+    <use href="#outer-button" x="50%" y="0" >
+      <set href="button-inner" attributeName="id" to="square_1_3" />
+    </use>
+    <use href="#outer-button" x="75%" y="0" >
+      <set href="button-inner" attributeName="id" to="square_1_4" />
+    </use>
+    <use href="#outer-button" x="0%" y="25%" >
+      <set href="button-inner" attributeName="id" to="square_2_1" />
+    </use>
+    <use href="#outer-button" x="75%" y="25%" >
+      <set href="button-inner" attributeName="id" to="square_2_4" />
+    </use>
+    <use href="#outer-button" x="0%" y="50%" >
+      <set href="button-inner" attributeName="id" to="square_3_1" />
+    </use>
+    <use href="#outer-button" x="75%" y="50%" >
+      <set href="button-inner" attributeName="id" to="square_3_4" />
+    </use>
+        <use href="#outer-button" x="0" y="75%" >
+      <set href="#button-inner" attributeName="id" to="square_4_1" />
+      <!--<set href="#button-inner/text" attributeName="text-buffer" to="Go!" />-->
+    </use>
+    <use href="#outer-button" x="25%" y="75%" >
+      <set href="button-inner" attributeName="id" to="square_4_2" />
+  <!--    <set href="#text" attributeName="text-buffer" to="Click Me!" />-->
+    </use>
+    <use href="#outer-button" x="50%" y="75%" >
+      <set href="button-inner" attributeName="id" to="square_4_3" />
+    </use>
+    <use href="#outer-button" x="75%" y="75%" >
+      <set href="button-inner" attributeName="id" to="square_4_4" />
+    </use>
+    <!--
+    <text id="accel-label" class="sensor-label" x="50%" y="30">accelerometer</text>
+    <text id="accel-data" class="sensor-data" x="50%" y="50">{ ... }</text>
+    <text id="bar-label" class="sensor-label" x="50%" y="75">barometer</text>
+    <text id="bar-data" class="sensor-data" x="50%" y="95">{ ... }</text>
+    <text id="bps-label" class="sensor-label" x="50%" y="120">body-presence</text>
+    <text id="bps-data" class="sensor-data" x="50%" y="140">{ ... }</text>
+    <text id="gyro-label" class="sensor-label" x="50%" y="165">gyroscope</text>
+    <text id="gyro-data" class="sensor-data" x="50%" y="185">{ ... }</text>
+    <text id="hrm-label" class="sensor-label" x="50%" y="210">heart rate</text>
+    <text id="hrm-data" class="sensor-data" x="50%" y="230">{ ... }</text>
+    <text id="orientation-label" class="sensor-label" x="50%" y="255">orientation</text>
+    <text id="orientation-data" class="sensor-data" x="50%" y="275">{ ... }</text>
+  -->
+  </svg>
+</svg>

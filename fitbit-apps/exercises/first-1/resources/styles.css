@@ -1,0 +1,25 @@
+.title {
+  font-family:System-Regular;
+  fill:blue;
+  text-anchor: middle;
+  text-length:40;
+  font-size:30;
+}
+.box {
+  fill:red;
+}
+.sensor-label {
+  font-family: System-Regular;
+  fill: white;
+  text-anchor: middle;
+  text-length: 32;
+  font-size: 20;
+}
+
+.sensor-data {
+  font-family: System-Light;
+  fill: yellow;
+  text-anchor: middle;
+  text-length: 32;
+  font-size: 20;
+}

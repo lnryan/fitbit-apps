@@ -1,0 +1,29 @@
+{
+  "fitbit": {
+    "appUUID": "4be18fc1-47b1-4b17-baf9-630720909817",
+    "appType": "app",
+    "appDisplayName": "uberclock",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "#607d8b",
+    "requestedPermissions": [
+      "access_heart_rate",
+      "access_activity",
+      "access_user_profile",
+      "access_location",
+      "access_internet",
+      "access_exercise"
+    ],
+    "buildTargets": [
+      "higgs",
+      "meson"
+    ],
+    "i18n": {
+      "en": {
+        "name": "uberclock"
+      }
+    }
+  },
+  "devDependencies": {
+    "@fitbit/sdk": "~3.0.0"
+  }
+}
