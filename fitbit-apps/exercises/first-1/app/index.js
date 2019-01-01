@@ -100,7 +100,7 @@ function settingsCallback(data) {
     document.getElementsByClassName("uberbutton").forEach(b=>{ b.style.fill = data.outlineColor; });
     document.getElementById("centerbox").style.fill = data.outlineColor;
   }
-
+  console.log(JSON.stringify(data));
 }
 syncer.initialize(settingsCallback);
 

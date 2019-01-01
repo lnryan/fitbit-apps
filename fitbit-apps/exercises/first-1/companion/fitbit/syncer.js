@@ -7,6 +7,7 @@ import { settingsStorage } from "settings";
 export function initialize() {
   settingsStorage.addEventListener("change", evt => {
     if (evt.oldValue !== evt.newValue) {
+      //console.log('New Setting',evt.key,evt.newValue);
       sendValue(evt.key, evt.newValue);
     }
   });
@@ -14,6 +15,7 @@ export function initialize() {
 
 function sendValue(key, val) {
   if (val) {
+    //console.log(JSON.stringify(val));
     sendSettingData({
       key: key,
       value: JSON.parse(val)
