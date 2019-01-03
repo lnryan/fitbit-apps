@@ -50,50 +50,61 @@ const colorSet = [
 ];
 
 const boxes = [
-    ['square_1_1','Box 1','Top Lefthand corner'],
-    ['square_1_2','Box 2','Top row, second from left']
-];
-
-const opt_stats = [
-    {name:'hr',value:'hr'},
-    {name:'steps',value:'steps'}
-];
-const opt_exercises = [
-    {name:'run',value:'run'},
-    {name:'swim',value:'swim'},
-    {name:'custom',value:'custom'}
+    [1,[1,2,3,4]],
+    [2,[1,4]],
+    [3,[1,4]],
+    [4,[1,2,3,4]]
 ];
 
 let boxOptions = {
   '':[{name:'Select Type First',value:''}],
-  'e':[{name:'Run',value:'run'}],
+  'a':[[{name:'Not Available',value:''}]], //special apps like timer, circuits
+  'e':[
+    {name:'Run',value:'run'},
+    {name:'Treadmill',value:'treadmill'},
+    {name:'Hiking',value:'hiking'},
+    {name:'Weights',value:'weights'},
+    {name:'Cycling',value:'cycling'},
+    {name:'Elliptical',value:'elliptical'},
+    {name:'Spinning',value:'spinning'},
+    {name:'Yoga',value:'yoga'},
+    {name:'Stair-Climber',value:'stair-climber'},
+    {name:'Circuit-Training',value:'circuit-training'},
+    {name:'Bootcamp',value:'bootcamp'},
+    {name:'Pilates',value:'pilates'},
+    {name:'Kickboxing',value:'kickboxing'},
+    {name:'Tennis',value:'tennis'},
+    {name:'Martial-Arts',value:'martial-arts'},
+    {name:'Golf',value:'golf'},
+    {name:'Workout',value:'workout'},
+    {name:'Swim',value:'swim'},
+    {name:'Skiing',value:'skiing'},
+    {name:'Skating',value:'skating'},
+    {name:'Custom',value:'custom'}
+  ],
   's':[
-  {name:"Ono",   value:"1"},
-  {name:"Two",   value:"2"},
-  {name:"Three", value:"3"},
-  {name:"Four", value:"4"},
-  {name:"Five", value:"5"},
-  {name:"Six", value:"6"},
-  {name:"Seven", value:"7"},
-  {name:"Eight", value:"8"},
-  {name:"Nine", value:"9"},
-  {name:"Ten", value:"10"},
-  {name:"Eleven", value:"11"},
-  {name:"Twelve", value:"12"},
-  {name:"Thirteen", value:"13"},
-  {name:"Fourteen", value:"14"},
-  {name:"Fifteen", value:"15"}
+    {name:"Active Minutes",   value:"activeMinutes"},
+    {name:"Calories",   value:"calories"},
+    {name:"Distance", value:"distance"},
+    {name:"Floors", value:"elevationGain"},
+    {name:"Steps", value:"steps"},
+    {name:"Cardio", value:"cardio"},
+    {name:"Heart-Rate", value:"heartrate"}
 ]};
 
 
 function mySettings(props) {
-  let retOptions = (box)=>{
+  let boxId = (r,c)=> `square_${r}_${c}`
 
-    let btype = props.settings[box+'.type'];
-    let val = (btype)?JSON.parse(btype).values[0].value:'';
-    console.log(`Type is ${btype}, and options key is ${val}`);
-    return boxOptions[val];
+  let boxType = (r,c) => {
+    let id = boxId(r,c);
+    console.log(`id: ${id}`);
+    console.log(props.settings[id+'.type']);
+    return props.settings[boxId(r,c)+'.type']?JSON.parse(props.settings[boxId(r,c)+'.type']).values[0]:[{ name:'', value:''}];
   }
+
+  let boxTypeOptions = (r,c)=> boxOptions[boxType(r,c).value];
+
   return (
     <Page>
       <Section title="App Colors" >
@@ -102,37 +113,42 @@ function mySettings(props) {
             settingsKey="outlineColor"
         />
       </Section>
-      <Text bold italic>Boxes are configured clock-wise from top-left corner</Text>
-      {boxes.map(([id,name,description])=><Section title={name}>
-        <Text italic>{description}</Text>
-        <Select
-            settingsKey={`${id}.type`}
-            label={`Type`}
-            options={[
-                {name:'Stat',value:'s'},
-                {name:'Exercise',value:'e'}
-            ]}
-            renderItem={
-              option=><Text>{option.name}</Text>
-            }
-        />
+      <Section title="Configure Functional Boxes">
+        <Text bold italic>Boxes are configured clock-wise from top-left corner</Text>
+        {boxes.map(([row,cols])=> cols.map( col=>
+          <Section>
+            <Text bold>Row {row}, Column {col}</Text>
+            <Text italic></Text>
+            <Select
+                settingsKey={`${boxId(row,col)}.type`}
+                label={`Type`}
+                options={[
+                    {name:'Stat',value:'s'},
+                    {name:'Exercise',value:'e'}
+                ]}
+                renderItem={
+                  option=><Text>{(option)?option.name:'*Select...*'}</Text>
+                }
+            />
 
-        <Select
-            label={`${name} Function`}
-            //multiple
-            settingsKey={`${id}.fn`}
-            options={retOptions(id)}
-            renderItem={
-              (option) =>
-                  <TextImageRow
-                      label={option.name}
-                      sublabel="Sub-Label"
-                      icon="https://tinyurl.com/ybbmpxxq"
-                  />
-            }
-            onSelection={(selection) => console.log(selection)}
-        />
-      </Section>)}
+            <Select
+                label={`${boxType(row,col).name} selection`}
+                //multiple
+                settingsKey={`${boxId(row,col)}.fn`}
+                options={boxTypeOptions(row,col)}
+                renderItem={
+                  (option) =>
+                      <TextImageRow
+                          label={(option)?option.name:'*Select...'}
+                          sublabel={boxType(row,col).name}
+                          icon="https://tinyurl.com/ybbmpxxq"
+                      />
+                }
+                onSelection={(selection) => console.log(selection)}
+            />
+        </Section>
+        ))}
+      </Section>
     </Page>
   );
 }
